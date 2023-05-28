@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:whatsflut/common/extension/custom_theme_extension.dart';
+import 'package:whatsflut/common/widgets/custom_elevated_button.dart';
+import 'package:whatsflut/feature/welcome/widgets/language_button.dart';
+import 'package:whatsflut/feature/welcome/widgets/privacy_and_terms.dart';
 
 class WelcomePage extends StatelessWidget {
   const WelcomePage({super.key});
@@ -6,22 +10,27 @@ class WelcomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF111B21),
       body: SafeArea(
         child: Column(
           children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 30),
-              child: Expanded(
-                child: Image.asset(
-                  'assets/images/circle.png',
-                  color: const Color(0xFF00A884),
+            Expanded(
+              child: Align(
+                alignment: Alignment.bottomCenter,
+                child: Padding(
+                  padding: const EdgeInsets.only(
+                    top: 50,
+                    left: 50,
+                    right: 50,
+                    bottom: 10,
+                  ),
+                  child: Image.asset(
+                    'assets/images/circle.png',
+                    color: context.theme.circleImgColor,
+                  ),
                 ),
               ),
             ),
-            const SizedBox(
-              height: 40,
-            ),
+            const SizedBox(height: 40),
             Expanded(
                 child: Column(
               children: [
@@ -32,90 +41,13 @@ class WelcomePage extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 30,
-                    vertical: 20,
-                  ),
-                  child: RichText(
-                    textAlign: TextAlign.center,
-                    text: const TextSpan(
-                      text: 'Read our ',
-                      style: TextStyle(
-                        color: Color(0xFF8696A0),
-                        height: 1.5,
-                      ),
-                      children: [
-                        TextSpan(
-                          text: 'Privacy Policy',
-                          style: TextStyle(
-                            color: Color(0xFF53BDEB),
-                          ),
-                        ),
-                        TextSpan(
-                            text: '\nTap "Agree and Continue" to accept the '),
-                        TextSpan(
-                          text: '\nTerms of Services',
-                          style: TextStyle(
-                            color: Color(0xFF53BDEB),
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
+                const PrivacyAndTerms(),
+                CustomElevatedButton(
+                  onPressed: () {},
+                  buttonText: 'Agree and Continue',
                 ),
-                SizedBox(
-                  width: MediaQuery.of(context).size.width - 100,
-                  height: 42,
-                  child: ElevatedButton(
-                    onPressed: () {},
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color(0xFF00A884),
-                      foregroundColor: const Color(0xFF111B21),
-                      splashFactory: NoSplash.splashFactory,
-                      elevation: 0,
-                      shadowColor: Colors.transparent,
-                    ),
-                    child: const Text('Agree and Continue'),
-                  ),
-                ),
-                const SizedBox(
-                  height: 50,
-                ),
-                Material(
-                  color: const Color(0xFF182229),
-                  borderRadius: BorderRadius.circular(20),
-                  child: InkWell(
-                    onTap: () {},
-                    borderRadius: BorderRadius.circular(20),
-                    splashFactory: NoSplash.splashFactory,
-                    highlightColor: const Color(0xFF09141A),
-                    child: const Padding(
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Icon(
-                            Icons.language,
-                            color: Color(0xFF00A884),
-                          ),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          Text('English'),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          Icon(
-                            Icons.keyboard_arrow_down,
-                            color: Color(0xFF00A884),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                )
+                const SizedBox(height: 50),
+                const LangugageButton()
               ],
             ))
           ],

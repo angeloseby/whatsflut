@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:whatsflut/common/theme/dark_theme.dart';
+import 'package:whatsflut/common/theme/light_theme.dart';
 import 'package:whatsflut/feature/welcome/pages/welcome_page.dart';
 
 void main() {
@@ -13,7 +15,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'WhatsFlut',
-      theme: ThemeData.dark(),
+      theme: lightTheme(),
+      darkTheme: darkTheme(),
+      themeMode: ThemeMode.system,
       debugShowCheckedModeBanner: false,
       home: const Scaffold(
         body: WelcomePage(),
